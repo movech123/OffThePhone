@@ -10,5 +10,15 @@ ScreenTime.kt
 Schedule.kt
 Calendar.kt
 Tasks.kt
-Setitng.kt
+Setting.kt
 
+Activity xml files:
+Logo.xml
+Setup_1.xml
+Setup_2.xml
+Homepage.xml
+ScreenTime.xml
+Schedule.xml
+Calendar.xml
+Tasks.xml
+Setting.xml
