@@ -17,4 +17,18 @@ class Homepage : AppCompatActivity() {
             insets
         }
     }
+
+    private fun setupUI() {
+        // Set up UI elements (buttons, text views, etc.)
+
+    }
+
+    private fun goToTasks() {
+        // Intent to navigate to TasksActivity
+
+    }
+
+    private fun goToSettings() {
+        // Intent to navigate to SettingsActivity
+    }
 }

@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.*
 import kotlinx.coroutines.flow.Flow
 
-// Entity Classes
+// entity classes
 @Entity(tableName = "tasks")
 data class Task(
     @PrimaryKey(autoGenerate = true)
@@ -56,7 +56,7 @@ enum class TaskPriority {
     LOW, MEDIUM, HIGH
 }
 
-// Type Converters
+// type converters
 class Converters {
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {
@@ -79,7 +79,7 @@ class Converters {
     }
 }
 
-// Data Access Objects (DAOs)
+
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM tasks ORDER BY due_date ASC")
@@ -145,7 +145,7 @@ interface ScreenTimeLogDao {
     suspend fun deleteOldLogs(date: Date)
 }
 
-// Database Class
+
 @Database(
     entities = [Task::class, ScreenTimeLimit::class, ScreenTimeLog::class],
     version = 1,
@@ -182,7 +182,7 @@ abstract class AppDatabase : RoomDatabase() {
     }
 }
 
-// Repository class for handling database operations
+
 class AppRepository(private val database: AppDatabase) {
     // Task Operations
     fun getAllTasks() = database.taskDao().getAllTasksFlow()
@@ -192,7 +192,7 @@ class AppRepository(private val database: AppDatabase) {
     suspend fun updateTask(task: Task) = database.taskDao().updateTask(task)
     suspend fun deleteTask(task: Task) = database.taskDao().deleteTask(task)
 
-    // Screen Time Limit Operations
+
     fun getAllLimits() = database.screenTimeLimitDao().getAllLimitsFlow()
 
     suspend fun setAppLimit(limit: ScreenTimeLimit) =
@@ -201,7 +201,6 @@ class AppRepository(private val database: AppDatabase) {
     suspend fun getAppLimit(packageName: String) =
         database.screenTimeLimitDao().getLimitForPackage(packageName)
 
-    // Screen Time Log Operations
     suspend fun logScreenTime(log: ScreenTimeLog) =
         database.screenTimeLogDao().insertLog(log)
 
@@ -211,7 +210,7 @@ class AppRepository(private val database: AppDatabase) {
     suspend fun getUsageHistory(startDate: Date, endDate: Date) =
         database.screenTimeLogDao().getLogsForDateRange(startDate, endDate)
 
-    // Cleanup Operations
+
     suspend fun cleanupOldData(date: Date) =
         database.screenTimeLogDao().deleteOldLogs(date)
 
