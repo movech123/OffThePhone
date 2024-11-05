@@ -4,6 +4,7 @@ package com.offthephone.database
 import android.content.Context
 import androidx.room.*
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.*
 import kotlinx.coroutines.flow.Flow
 
