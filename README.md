@@ -22,7 +22,7 @@ Schedule.xml
 Calendar.xml
 Tasks.xml
 Setting.xml
-
+    
 App Description: This app will :
 -help people cut back on the amount of time they spend using their phone
 -organize their day more effectively
