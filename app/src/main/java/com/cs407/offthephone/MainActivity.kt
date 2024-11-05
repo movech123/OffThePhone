@@ -21,5 +21,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupButtons() {
+        // Set up button listeners for navigation to other activities
+
+    }
+
+    private fun goToTasks() {
+        // Intent to navigate to TasksActivity
+
+    }
+
+    private fun goToSettings() {
+        // Intent to navigate to SettingsActivity
+
+    }
+
 
 }
