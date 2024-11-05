@@ -1,7 +1,7 @@
 # OffThePhone
-CS 407 Project  
+CS 407 Project 
 
-Fragment Names:  
+Fragment Names:
 Logo.kt
 Setup_1.kt
 Setup_2.kt
