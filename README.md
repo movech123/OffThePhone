@@ -1,5 +1,15 @@
 # OffThePhone
-CS 407 Project 
+CS 407 Project
+Permissions Required:
+For getting the user's screen time statistics
+    permission: Manifest.permission.PACKAGE_USAGE_STATS
+    Class: UsageStatsManager
+For getting access to the user's flashlight
+    Either get access to the camera: android.permission.CAMERA
+    Or to their flashlight directly (not sure about this one): android.permission.FLASHLIGHT
+For allowing running in the background, even when the app is closed:
+    used for notifications (and potentially a screen on alarm)
+    Permission required: android.permission.FOREGROUND_SERVICE
 
 Fragment Names:
 Logo.kt
