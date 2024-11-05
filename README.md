@@ -1,7 +1,7 @@
 # OffThePhone
 CS 407 Project  
 
-Fragment Names :  
+Fragment Names:  
 Logo.kt
 Setup_1.kt
 Setup_2.kt
@@ -12,7 +12,7 @@ Calendar.kt
 Tasks.kt
 Setting.kt
 
-Activity xml files :
+Activity xml files:
 Logo.xml
 Setup_1.xml
 Setup_2.xml
