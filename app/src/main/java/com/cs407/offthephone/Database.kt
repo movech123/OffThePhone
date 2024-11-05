@@ -26,7 +26,6 @@ data class Task(
     @ColumnInfo(name = "reminder_time")
     val reminderTime: Date?
 )
-
 @Entity(tableName = "screen_time_limits")
 data class ScreenTimeLimit(
     @PrimaryKey
