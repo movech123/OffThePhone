@@ -40,10 +40,7 @@
             android:name=".Homepage"
             android:exported="false" />
         <activity
-            android:name=".Setup_2"
-            android:exported="false" />
-        <activity
-            android:name=".Setup_1"
+            android:name=".Setup"
             android:exported="false" />
 
     </application>
