@@ -28,9 +28,6 @@
             android:name=".Tasks"
             android:exported="false" />
         <activity
-            android:name=".Calendar"
-            android:exported="false" />
-        <activity
             android:name=".Schedule"
             android:exported="false" />
         <activity
