@@ -17,4 +17,18 @@ class Logo : AppCompatActivity() {
             insets
         }
     }
+
+    // TODO recognize when app is loaded and on homepage
+    //  sleep for certain amt of time while app loads. Then:
+    //  go to setup page if the user is new
+    //  or homepage if they are not
+
+    /**
+     * Looks for user information on device.
+     * @return true if there is already a user profile, false if not.
+     */
+    private fun findUser() {
+        // TODO go to setup page if the user is new
+        //  or homepage if they are not
+    }
 }
