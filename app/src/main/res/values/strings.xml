@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">OffThePhone</string>
     <string name="home_page">Home</string>
+    <string name="screentime_page">ScreenTime</string>
     <string name="settings_button">Settings Button</string>
     <string name="tasks_button">Tasks button</string>
     <string name="home_button">Home button</string>
