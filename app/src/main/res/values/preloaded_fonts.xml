@@ -2,5 +2,6 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/lexend_exa_light</item>
+        <item>@font/alice</item>
     </array>
 </resources>

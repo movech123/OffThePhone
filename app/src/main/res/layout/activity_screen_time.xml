@@ -1,41 +1,178 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_view"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screentime_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#FDFAEA"
+    tools:context=".ScreenTime">
 
-    <!-- Horizontal layout for buttons at the top -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <SeekBar
+        android:id="@+id/seekBar4"
+        android:layout_width="206dp"
+        android:layout_height="21dp"
+        android:progressBackgroundTint="#998B8B"
+        android:progressTint="#562E2E"
+        android:thumbTint="#6A4F4F"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="669dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="206dp"
+        android:layout_height="21dp"
+        android:backgroundTint="#473333"
+        android:progressBackgroundTint="#998B8B"
+        android:progressTint="#562E2E"
+        android:thumbTint="#6A4F4F"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="614dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="206dp"
+        android:layout_height="21dp"
+        android:progressBackgroundTint="#998B8B"
+        android:progressTint="#562E2E"
+        android:thumbTint="#6A4F4F"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="565dp" />
+
+    <ImageView
+        android:id="@+id/settingsIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Settings"
+        android:src="@drawable/settingsicon"
+        app:layout_constraintStart_toEndOf="@id/homeIcon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/homeIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="16dp"
+        android:contentDescription="Home"
+        android:src="@drawable/homeicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="263dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:fontFamily="@font/alice"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
+        android:text="ScreenTime"
+        android:textColor="#1D1A1A"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/home_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Home" />
+    <ImageView
+        android:id="@+id/checkmarkIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Checkmark"
+        android:src="@drawable/checkicon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/header"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/settings_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Settings" />
-        <Button
-            android:id="@+id/task_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Task" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/current_screentime_header"
+        android:layout_width="194dp"
+        android:layout_height="33dp"
+        android:fontFamily="@font/alice"
+        android:text="Current Screentime:"
+        android:textColor="#090808"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="439dp" />
 
-    <!-- Fragment container below the buttons -->
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+    <ImageView
+        android:id="@+id/Frame"
+        android:layout_width="600dp"
+        android:layout_height="514dp"
+        app:srcCompat="@android:drawable/alert_light_frame"
+        tools:layout_editor_absoluteX="-95dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/screentime_barchart"
+        android:layout_width="381dp"
+        android:layout_height="243dp"
+        app:srcCompat="@drawable/_0302024"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <TextView
+        android:id="@+id/app_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alice"
+        android:text="Tiktok:"
+        android:textColor="#050505"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="512dp" />
+
+    <TextView
+        android:id="@+id/app_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alice"
+        android:text="Instagram:"
+        android:textColor="#0F0D0D"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="565dp" />
+
+    <TextView
+        android:id="@+id/app_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alice"
+        android:text="Photos:"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="617dp" />
+
+    <TextView
+        android:id="@+id/app_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/alice"
+        android:text="Messages:"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="672dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="206dp"
+        android:layout_height="21dp"
+        android:progressBackgroundTint="#998B8B"
+        android:progressTint="#562E2E"
+        android:thumbTint="#6A4F4F"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="509dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">OffThePhone</string>
+    <string name="home_page">Home</string>
+    <string name="screentime_page">ScreenTime</string>
+    <string name="settings_button">Settings Button</string>
+    <string name="tasks_button">Tasks button</string>
+    <string name="home_button">Home button</string>
+    <string name="logo_description">OffThePhone Logo</string>
+    <string name="home_schedule">Today\'s Schedule</string>
+    <string name="home_screentime">Current Screen Time</string>
+    <string name="setup_page">Setup</string>
+    <string name="enter_schedule">Enter Schedule</string>
+    <string name="event_name">Event Name</string>
+    <string name="event_time">Event Time</string>
+    <string name="continue_button">Continue</string>
 </resources>
