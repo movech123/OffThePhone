@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OffThePhone</string>
+    <string name="app_name">Off The Phone</string>
     <string name="home_page">Home</string>
     <string name="screentime_page">ScreenTime</string>
     <string name="settings_button">Settings Button</string>
@@ -13,4 +13,5 @@
     <string name="event_name">Event Name</string>
     <string name="event_time">Event Time</string>
     <string name="continue_button">Continue</string>
+    <string name="schedule_page">Schedule</string>
 </resources>

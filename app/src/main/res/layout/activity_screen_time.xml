@@ -17,7 +17,8 @@
         android:thumbTint="#6A4F4F"
         android:visibility="visible"
         tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="669dp" />
+        tools:layout_editor_absoluteY="669dp"
+        tools:ignore="MissingConstraints" />
 
     <SeekBar
         android:id="@+id/seekBar3"
@@ -29,7 +30,8 @@
         android:thumbTint="#6A4F4F"
         android:visibility="visible"
         tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="614dp" />
+        tools:layout_editor_absoluteY="614dp"
+        tools:ignore="MissingConstraints" />
 
     <SeekBar
         android:id="@+id/seekBar2"
@@ -40,7 +42,8 @@
         android:thumbTint="#6A4F4F"
         android:visibility="visible"
         tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="565dp" />
+        tools:layout_editor_absoluteY="565dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/settingsIcon"
@@ -101,7 +104,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="439dp" />
+        tools:layout_editor_absoluteY="439dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/Frame"
@@ -109,7 +113,8 @@
         android:layout_height="514dp"
         app:srcCompat="@android:drawable/alert_light_frame"
         tools:layout_editor_absoluteX="-95dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/screentime_barchart"
@@ -117,7 +122,8 @@
         android:layout_height="243dp"
         app:srcCompat="@drawable/_0302024"
         tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="137dp" />
+        tools:layout_editor_absoluteY="137dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/app_text1"
@@ -128,7 +134,8 @@
         android:textColor="#050505"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="512dp" />
+        tools:layout_editor_absoluteY="512dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/app_text2"
@@ -139,7 +146,8 @@
         android:textColor="#0F0D0D"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="565dp" />
+        tools:layout_editor_absoluteY="565dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/app_text3"
@@ -150,7 +158,8 @@
         android:textColor="#000000"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="617dp" />
+        tools:layout_editor_absoluteY="617dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/app_text4"
@@ -161,7 +170,8 @@
         android:textColor="#000000"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="672dp" />
+        tools:layout_editor_absoluteY="672dp"
+        tools:ignore="MissingConstraints" />
 
     <SeekBar
         android:id="@+id/seekBar1"
@@ -172,7 +182,8 @@
         android:thumbTint="#6A4F4F"
         android:visibility="visible"
         tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="509dp" />
+        tools:layout_editor_absoluteY="509dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
