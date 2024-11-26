@@ -8,7 +8,7 @@
     android:background="#D2B48C"
     android:layout_marginBottom="4dp"
     android:elevation="2dp"
-    android:cornerRadius="8dp">
+>
 
         <TextView
         android:id="@+id/eventName"

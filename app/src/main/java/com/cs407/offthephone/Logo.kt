@@ -46,7 +46,7 @@ class Logo : AppCompatActivity() {
      * @return true if there is already a user profile, false if not.
      */
     private fun findUser(): Boolean {
-        val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        return preferences.getBoolean("isNewUser", true)
+       // val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        return true
     }
 }
