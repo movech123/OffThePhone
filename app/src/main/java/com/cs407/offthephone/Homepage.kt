@@ -1,9 +1,12 @@
 package com.cs407.offthephone
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
@@ -17,7 +20,7 @@ class Homepage : AppCompatActivity() {
 
         // set date string in the layout
         date_box = findViewById(R.id.current_date)
-        val sdf = SimpleDateFormat("dd-MM-yyyy")
+        val sdf = SimpleDateFormat("MM-dd-yyyy")
         val currentDate = sdf.format(Date())
         date_box.text = currentDate
 
@@ -31,6 +34,40 @@ class Homepage : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewSchedule)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = ScheduleAdapter(scheduleList)
+
+        // Find the tasks button and set a click listener
+        val checkButton: ImageView = findViewById(R.id.checkmarkIcon)
+        checkButton.setOnClickListener {
+            runOnUiThread {
+                val taskintent = Intent(this, Tasks::class.java)
+                startActivity(taskintent)
+            }
+        }
+
+        // Find the settings button and set a click listener
+        val settingButton: ImageView = findViewById(R.id.settingsIcon)
+        settingButton.setOnClickListener {
+            runOnUiThread {
+                val settingsintent = Intent(this, Settings::class.java)
+                startActivity(settingsintent)
+            }
+        }
+
+        // Find the schedule button and set a click listener
+        val scheduleButton = findViewById<CardView>(R.id.scheduleBox)
+        scheduleButton.setOnClickListener {
+            runOnUiThread {
+                startActivity(Intent(this, Schedule::class.java))
+            }
+        }
+
+        // Find the schedule button and set a click listener
+        val screentimeButton = findViewById<CardView>(R.id.screentimeBox)
+        screentimeButton.setOnClickListener {
+            runOnUiThread {
+                startActivity(Intent(this, ScreenTime::class.java))
+            }
+        }
     }
 
     private fun setupUI() {

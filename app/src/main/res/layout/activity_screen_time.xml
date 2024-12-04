@@ -54,7 +54,9 @@
         android:contentDescription="Settings"
         android:src="@drawable/settingsicon"
         app:layout_constraintStart_toEndOf="@id/homeIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
+        android:focusable="true" />
 
     <ImageView
         android:id="@+id/homeIcon"
@@ -64,7 +66,9 @@
         android:contentDescription="Home"
         android:src="@drawable/homeicon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/header"
@@ -92,7 +96,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/header"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/current_screentime_header"
