@@ -106,14 +106,5 @@ class Tasks : AppCompatActivity() {
         // TaskRepository.markAsComplete(taskId)
     }
 
-    /**
-     * Data class representing a task with its attributes.
-     */
-    data class Task(
-        val id: Int,
-        val name: String,
-        val isComplete: Boolean = false,
-        val deadline: String = ""
-        // Add additional task fields as needed
-    )
+
 }
