@@ -18,4 +18,5 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks")
     suspend fun getTasks(): List<Task>
+
 }

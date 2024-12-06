@@ -7,8 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class Tasks : AppCompatActivity() {
+    private lateinit var database : TaskDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -17,8 +20,11 @@ class Tasks : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+
         }
 
+        // Init the DB
+        database = TaskDatabase.getDatabase(this@Tasks)
         // Find the home button and set a click listener
         val homeButton: ImageView = findViewById(R.id.homeIcon)
         homeButton.setOnClickListener {
@@ -36,26 +42,20 @@ class Tasks : AppCompatActivity() {
                 startActivity(settingsintent)
             }
         }
-
-        // Initialize task list and settings
-        initializeTasks()
-    }
-
-    /**
-     * Initializes task-related settings and loads tasks data.
-     */
-    private fun initializeTasks() {
+        addTask("Task 1")
         loadTasks()
-        setupTaskCompletionListener()
     }
+
 
     /**
      * Loads tasks from the database or storage.
      */
-    private fun loadTasks() {
-        // TODO: Implement the logic to retrieve tasks from a database or local storage.
-        // Example:
-        // val tasks = TaskRepository.getTasksForToday()
+     private fun loadTasks() {
+        lifecycleScope.launch {
+            val tasks = database.taskDao().getTasks()
+            println(tasks)
+
+        }
     }
 
     /**
@@ -72,9 +72,10 @@ class Tasks : AppCompatActivity() {
      * @param taskName The name of the task to add.
      */
     private fun addTask(taskName: String) {
-        // TODO: Implement the logic to add a new task.
-        // Example:
-        // TaskRepository.addNewTask(Task(name = taskName))
+        lifecycleScope.launch {
+            val newTask = Task(0, 9, 10, listOf("Monday", "Tuesday"), taskName, false)
+            database.taskDao().insertTask(newTask)
+        }
     }
 
     /**
