@@ -70,6 +70,8 @@
         android:foregroundGravity="center_vertical|center|center_horizontal"
         app:cardBackgroundColor="#372C2C"
         app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteX="70dp">
 
         <LinearLayout
