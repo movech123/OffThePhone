@@ -3,47 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/screentime_page"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="#FDFAEA"
+    android:outlineAmbientShadowColor="#FDF1F1"
     tools:context=".ScreenTime">
-
-    <SeekBar
-        android:id="@+id/seekBar4"
-        android:layout_width="206dp"
-        android:layout_height="21dp"
-        android:progressBackgroundTint="#998B8B"
-        android:progressTint="#562E2E"
-        android:thumbTint="#6A4F4F"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="669dp"
-        tools:ignore="MissingConstraints" />
-
-    <SeekBar
-        android:id="@+id/seekBar3"
-        android:layout_width="206dp"
-        android:layout_height="21dp"
-        android:backgroundTint="#473333"
-        android:progressBackgroundTint="#998B8B"
-        android:progressTint="#562E2E"
-        android:thumbTint="#6A4F4F"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="614dp"
-        tools:ignore="MissingConstraints" />
-
-    <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="206dp"
-        android:layout_height="21dp"
-        android:progressBackgroundTint="#998B8B"
-        android:progressTint="#562E2E"
-        android:thumbTint="#6A4F4F"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="565dp"
-        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/settingsIcon"
@@ -54,9 +18,7 @@
         android:contentDescription="Settings"
         android:src="@drawable/settingsicon"
         app:layout_constraintStart_toEndOf="@id/homeIcon"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/homeIcon"
@@ -66,9 +28,7 @@
         android:contentDescription="Home"
         android:src="@drawable/homeicon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/header"
@@ -96,100 +56,172 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@id/header"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/current_screentime_header"
-        android:layout_width="194dp"
-        android:layout_height="33dp"
-        android:fontFamily="@font/alice"
-        android:text="Current Screentime:"
-        android:textColor="#090808"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="439dp"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/Frame"
-        android:layout_width="600dp"
-        android:layout_height="514dp"
-        app:srcCompat="@android:drawable/alert_light_frame"
-        tools:layout_editor_absoluteX="-95dp"
-        tools:layout_editor_absoluteY="16dp"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/screentime_barchart"
-        android:layout_width="381dp"
-        android:layout_height="243dp"
-        app:srcCompat="@drawable/_0302024"
-        tools:layout_editor_absoluteX="14dp"
-        tools:layout_editor_absoluteY="137dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/app_text1"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/screentimeBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/alice"
-        android:text="Tiktok:"
-        android:textColor="#050505"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="512dp"
-        tools:ignore="MissingConstraints" />
+        app:cardBackgroundColor="#372C2C"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="92dp">
 
-    <TextView
-        android:id="@+id/app_text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alice"
-        android:text="Instagram:"
-        android:textColor="#0F0D0D"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="565dp"
-        tools:ignore="MissingConstraints" />
+        <LinearLayout
+            android:layout_width="271dp"
+            android:layout_height="257dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:outlineAmbientShadowColor="#EDE7E7">
 
-    <TextView
-        android:id="@+id/app_text3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alice"
-        android:text="Photos:"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="617dp"
-        tools:ignore="MissingConstraints" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="225dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#D2B48C" />
 
-    <TextView
-        android:id="@+id/app_text4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alice"
-        android:text="Messages:"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="672dp"
-        tools:ignore="MissingConstraints" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#D2B48C" />
 
-    <SeekBar
-        android:id="@+id/seekBar1"
-        android:layout_width="206dp"
-        android:layout_height="21dp"
-        android:progressBackgroundTint="#998B8B"
-        android:progressTint="#562E2E"
-        android:thumbTint="#6A4F4F"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="509dp"
-        tools:ignore="MissingConstraints" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#D2B48C" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#D2B48C" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#D2B48C" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="409dp"
+        android:layout_height="380dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="350dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="338dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="60dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/alice"
+                android:text="@string/home_screentime"
+                android:textColor="#594747"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="21dp" />
+
+            <TextView
+                android:id="@+id/app_screentime1"
+                android:layout_width="93dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/alice"
+                android:text="Tiktok:"
+                android:textColor="#735959" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="-40dp"
+                android:layout_marginBottom="20dp"
+                android:outlineAmbientShadowColor="#070606"
+                android:progressTint="#E22929"
+                android:thumbTint="#524343" />
+
+            <TextView
+                android:id="@+id/app_screentime2"
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/alice"
+                android:text="Instagram:"
+                android:textColor="#594242" />
+
+            <SeekBar
+                android:id="@+id/seekBar3"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="-40dp"
+                android:layout_marginBottom="20dp"
+                android:progressTint="#C82424"
+                android:thumbTint="#544343" />
+
+            <TextView
+                android:id="@+id/app_screentime3"
+                android:layout_width="89dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/alice"
+                android:text="Settings:"
+                android:textColor="#574848" />
+
+            <SeekBar
+                android:id="@+id/seekBar4"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="-40dp"
+                android:layout_marginBottom="20dp"
+                android:outlineSpotShadowColor="#1B1414"
+                android:progressTint="#B62626"
+                android:thumbTint="#524545" />
+
+            <TextView
+                android:id="@+id/app_screentime4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/alice"
+                android:text="Messages:"
+                android:textColor="#5B4D4D" />
+
+            <SeekBar
+                android:id="@+id/seekBar5"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="-40dp"
+                android:layout_marginBottom="20dp"
+                android:progressTint="#D74545"
+                android:thumbTint="#433535" />
+
+        </LinearLayout>
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
