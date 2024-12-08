@@ -14,7 +14,7 @@ abstract class TaskDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: TaskDatabase? = null
-
+    // call this function to create a data base instance and access it once it is created
         fun getDatabase(context: Context): TaskDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {

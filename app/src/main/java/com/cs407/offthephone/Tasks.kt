@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,8 +18,8 @@ import kotlinx.coroutines.launch
 
 class Tasks : AppCompatActivity() {
     private lateinit var database : TaskDatabase
-    private val taskList = arrayListOf<String>() // Store tasks locally
-
+    private var taskList = arrayListOf<String>() // Store tasks locally
+    private val viewModel: TasksViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +40,16 @@ class Tasks : AppCompatActivity() {
 
         // Display all tasks
         val taskContainer: LinearLayout = findViewById(R.id.toDoListContainer)
-        taskList.forEach { task ->
-            addTaskToView(taskContainer, task)
+        viewModel.tasks.observe(this) { tasks ->
+            // Clear previous views
+            taskContainer.removeAllViews()
+
+            // Update the taskList and the view
+            taskList.clear()
+            taskList.addAll(tasks.map { it.name })
+            taskList.forEach { task ->
+                addTaskToView(taskContainer, task)
+            }
         }
 
         // Add button navigation to TaskMaker
@@ -70,21 +79,12 @@ class Tasks : AppCompatActivity() {
                 startActivity(settingsintent)
             }
         }
-        addTask("Task 1")
-        loadTasks()
+        addTask("Task 2")
+
+
     }
 
 
-    /**
-     * Loads tasks from the database or storage.
-     */
-     private fun loadTasks() {
-        lifecycleScope.launch {
-            val tasks = database.taskDao().getTasks()
-            println(tasks)
-
-        }
-    }
 
 
     /**
