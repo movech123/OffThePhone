@@ -31,7 +31,7 @@ class Tasks : AppCompatActivity() {
             insets
 
         }
-
+        database = TaskDatabase.getDatabase(this@Tasks)
         // Retrieve the task list from the intent
         val incomingTasks = intent.getStringArrayListExtra("TASK_LIST")
         if (incomingTasks != null) {
@@ -40,6 +40,7 @@ class Tasks : AppCompatActivity() {
 
         // Display all tasks
         val taskContainer: LinearLayout = findViewById(R.id.toDoListContainer)
+
         viewModel.tasks.observe(this) { tasks ->
             // Clear previous views
             taskContainer.removeAllViews()
@@ -56,12 +57,12 @@ class Tasks : AppCompatActivity() {
         val addButton: Button = findViewById(R.id.addToDoButton)
         addButton.setOnClickListener {
             val intent = Intent(this, TaskMaker::class.java)
-            intent.putStringArrayListExtra("TASK_LIST", taskList) // Pass the current list of tasks
             startActivity(intent)
         }
 
-        // Init the DB
-        database = TaskDatabase.getDatabase(this@Tasks)
+
+
+
         // Find the home button and set a click listener
         val homeButton: ImageView = findViewById(R.id.homeIcon)
         homeButton.setOnClickListener {
@@ -79,7 +80,6 @@ class Tasks : AppCompatActivity() {
                 startActivity(settingsintent)
             }
         }
-        addTask("Task 2")
 
 
     }

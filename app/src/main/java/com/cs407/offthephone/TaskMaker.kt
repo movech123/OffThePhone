@@ -9,10 +9,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class TaskMaker : AppCompatActivity() {
     private val taskList = arrayListOf<String>() // Store tasks locally
-
+    private var database: TaskDatabase? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,7 +24,7 @@ class TaskMaker : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        database = TaskDatabase.getDatabase(this@TaskMaker)
         // Find the home button and set a click listener
         val homeButton: ImageView = findViewById(R.id.homeIcon)
         homeButton.setOnClickListener {
@@ -54,21 +56,20 @@ class TaskMaker : AppCompatActivity() {
         val submitButton: Button = findViewById(R.id.submitButton)
         val taskField: EditText = findViewById(R.id.enterTask)
 
-        // Check if there's an existing task list passed from the Tasks page
-        val existingTasks = intent.getStringArrayListExtra("TASK_LIST")
-        if (existingTasks != null) {
-            taskList.addAll(existingTasks)
-        }
 
+        // Look at this for reference im adding the task to the database which will display them on the tasks activity
         // Submit button logic
         submitButton.setOnClickListener {
             val newTask = taskField.text.toString()
             if (newTask.isNotEmpty()) {
-                taskList.add(newTask) // Add the new task to the list
+                lifecycleScope.launch {
+                    // get the correct fields from the user to make this an Task object
+                    // I put some placeholders for the fields
+                    database?.taskDao()?.insertTask(Task(0, 9, 10, listOf("Monday", "Tuesday"), newTask, false))
+                }
             }
 
             val intent = Intent(this, Tasks::class.java)
-            intent.putStringArrayListExtra("TASK_LIST", taskList)
             startActivity(intent)
         }
     }

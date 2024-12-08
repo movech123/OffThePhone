@@ -19,4 +19,7 @@ interface TaskDao {
     @Query("SELECT * FROM tasks")
     suspend fun getTasks(): List<Task>
 
+    @Query("DELETE FROM tasks")
+    suspend fun clearAllTasks()
+
 }
