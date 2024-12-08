@@ -14,4 +14,6 @@
     <string name="event_time">Event Time</string>
     <string name="continue_button">Continue</string>
     <string name="schedule_page">Schedule</string>
+    <string name="submitted_task">Submitted Task</string>
+
 </resources>

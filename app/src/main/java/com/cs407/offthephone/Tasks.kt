@@ -2,7 +2,12 @@ package com.cs407.offthephone
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +17,9 @@ import kotlinx.coroutines.launch
 
 class Tasks : AppCompatActivity() {
     private lateinit var database : TaskDatabase
+    private val taskList = arrayListOf<String>() // Store tasks locally
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,6 +29,26 @@ class Tasks : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
 
+        }
+
+        // Retrieve the task list from the intent
+        val incomingTasks = intent.getStringArrayListExtra("TASK_LIST")
+        if (incomingTasks != null) {
+            taskList.addAll(incomingTasks)
+        }
+
+        // Display all tasks
+        val taskContainer: LinearLayout = findViewById(R.id.toDoListContainer)
+        taskList.forEach { task ->
+            addTaskToView(taskContainer, task)
+        }
+
+        // Add button navigation to TaskMaker
+        val addButton: Button = findViewById(R.id.addToDoButton)
+        addButton.setOnClickListener {
+            val intent = Intent(this, TaskMaker::class.java)
+            intent.putStringArrayListExtra("TASK_LIST", taskList) // Pass the current list of tasks
+            startActivity(intent)
         }
 
         // Init the DB
@@ -56,6 +84,32 @@ class Tasks : AppCompatActivity() {
             println(tasks)
 
         }
+    }
+
+
+    /**
+     * Helper method to dynamically add tasks to the view
+     */
+    private fun addTaskToView(container: LinearLayout, task: String) {
+        val taskLayout = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+        }
+
+        val taskTextView = TextView(this).apply {
+            text = task
+            textSize = 18f
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        }
+
+        val taskCheckbox = CheckBox(this).apply {
+            setOnCheckedChangeListener { _, isChecked ->
+                taskTextView.text = if (isChecked) "$task (Completed)" else task
+            }
+        }
+
+        taskLayout.addView(taskTextView)
+        taskLayout.addView(taskCheckbox)
+        container.addView(taskLayout)
     }
 
     /**

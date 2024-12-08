@@ -10,17 +10,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class Homepage : AppCompatActivity() {
     private lateinit var date_box: TextView
+    private lateinit var database: TaskDatabase // Reference to the database
     private lateinit var screenTimeManager: ScreenTimeManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepage)
+        database = TaskDatabase.getDatabase(this) // Initialize the database
 
         setDate() // make sure the right date is displayed
         setupSchedule() // populate the schedule box with the user's current schedule
@@ -38,16 +42,21 @@ class Homepage : AppCompatActivity() {
     }
 
     private fun setupSchedule() {
-        // Sample data for schedule items
-        val scheduleList = listOf(
-            ScheduleItem("Study", "12:00pm - 2:00pm"),
-            ScheduleItem("Cook", "2:00pm - 5:00pm"),
-            ScheduleItem("407 Meeting", "5:00pm - 8:00pm")
-        )
-        // Set up RecyclerView with adapter
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewSchedule)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = ScheduleAdapter(scheduleList)
+
+        lifecycleScope.launch {
+            // Fetch tasks from the database
+            val tasks = database.taskDao().getTasks()
+
+            // Get the top 3 tasks
+            val topTasks = tasks.take(3).map { task ->
+                ScheduleItem(task.name) // You can customize the time string
+            }
+
+            // Update the RecyclerView adapter
+            recyclerView.adapter = ScheduleAdapter(topTasks)
+        }
     }
 
     private fun setupButtons() {
@@ -71,7 +80,7 @@ class Homepage : AppCompatActivity() {
         val scheduleButton = findViewById<CardView>(R.id.scheduleBox)
         scheduleButton.setOnClickListener {
             runOnUiThread {
-                startActivity(Intent(this, Schedule::class.java))
+                startActivity(Intent(this, TaskMaker::class.java))
             }
         }
         // Find the screen time button and set a click listener

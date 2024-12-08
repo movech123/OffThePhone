@@ -2,17 +2,21 @@ package com.cs407.offthephone
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Schedule : AppCompatActivity() {
+class TaskMaker : AppCompatActivity() {
+    private val taskList = arrayListOf<String>() // Store tasks locally
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_schedule)
+        setContentView(R.layout.activity_taskmaker)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -46,8 +50,31 @@ class Schedule : AppCompatActivity() {
             }
         }
 
+        // Submit button logic
+        val submitButton: Button = findViewById(R.id.submitButton)
+        val taskField: EditText = findViewById(R.id.enterTask)
+
+        // Check if there's an existing task list passed from the Tasks page
+        val existingTasks = intent.getStringArrayListExtra("TASK_LIST")
+        if (existingTasks != null) {
+            taskList.addAll(existingTasks)
+        }
+
+        // Submit button logic
+        submitButton.setOnClickListener {
+            val newTask = taskField.text.toString()
+            if (newTask.isNotEmpty()) {
+                taskList.add(newTask) // Add the new task to the list
+            }
+
+            val intent = Intent(this, Tasks::class.java)
+            intent.putStringArrayListExtra("TASK_LIST", taskList)
+            startActivity(intent)
+        }
+    }
+
         // Initialize the schedule view and load tasks for today.
-        initializeSchedule()
+        //initializeSchedule()
     }
 
     /**
@@ -111,5 +138,3 @@ class Schedule : AppCompatActivity() {
         // - Update task status in the database.
         // - Refresh UI to indicate completion (e.g., strike-through, color change).
     }
-
-}

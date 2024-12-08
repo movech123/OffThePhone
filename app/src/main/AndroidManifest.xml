@@ -33,7 +33,7 @@
             android:name=".Tasks"
             android:exported="false" />
         <activity
-            android:name=".Schedule"
+            android:name=".TaskMaker"
             android:exported="false" />
         <activity
             android:name=".ScreenTime"
