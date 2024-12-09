@@ -84,8 +84,19 @@ class Tasks : AppCompatActivity() {
 
     }
 
+    // Clear the list if needed
+    private fun clearList() {
+        lifecycleScope.launch {
+            database.taskDao().clearAllTasks()
+        }
+    }
 
-
+    // Pass in the exact task object so the id's match
+    private fun deleteTask(task : Task) {
+        lifecycleScope.launch {
+            database.taskDao().deleteTask(task)
+        }
+    }
 
     /**
      * Helper method to dynamically add tasks to the view
