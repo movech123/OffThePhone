@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
 class TaskMaker : AppCompatActivity() {
-    private val taskList = arrayListOf<String>() // Store tasks locally
     private var database: TaskDatabase? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,7 @@ class TaskMaker : AppCompatActivity() {
             insets
         }
         database = TaskDatabase.getDatabase(this@TaskMaker)
+
         // Find the home button and set a click listener
         val homeButton: ImageView = findViewById(R.id.homeIcon)
         homeButton.setOnClickListener {
@@ -55,87 +56,32 @@ class TaskMaker : AppCompatActivity() {
         // Submit button logic
         val submitButton: Button = findViewById(R.id.submitButton)
         val taskField: EditText = findViewById(R.id.enterTask)
+        val timeField: EditText = findViewById(R.id.enterTime)
 
-
-        // Look at this for reference im adding the task to the database which will display them on the tasks activity
         // Submit button logic
         submitButton.setOnClickListener {
-            val newTask = taskField.text.toString()
-            if (newTask.isNotEmpty()) {
-                lifecycleScope.launch {
-                    // get the correct fields from the user to make this an Task object
-                    // I put some placeholders for the fields
-                    database?.taskDao()?.insertTask(Task(0, 9, 10, listOf("Monday", "Tuesday"), newTask, false))
-                }
-            }
+            val newTaskName = taskField.text.toString()
+            val newTaskTime = timeField.text.toString()
 
-            val intent = Intent(this, Tasks::class.java)
-            startActivity(intent)
+            if (newTaskName.isNotEmpty() && newTaskTime.isNotEmpty()) {
+                lifecycleScope.launch {
+                    // Add the task to the database
+                    val newTask = Task(id = 0, name = newTaskName, time = newTaskTime) // `id = 0` allows Room to auto-generate it
+                    database?.taskDao()?.insertTask(newTask)
+
+                    // Clear the input fields
+                    taskField.text.clear()
+                    timeField.text.clear()
+
+                    Toast.makeText(this@TaskMaker, "Task added successfully!", Toast.LENGTH_SHORT).show()
+
+                    // Navigate to the Tasks page
+                    val intent = Intent(this@TaskMaker, Tasks::class.java)
+                    startActivity(intent)
+                }
+            } else {
+                Toast.makeText(this, "Please enter both task and time", Toast.LENGTH_SHORT).show()
+            }
         }
     }
-
-        // Initialize the schedule view and load tasks for today.
-        //initializeSchedule()
-    }
-
-    /**
-     * Initializes the schedule view and loads tasks for the current day.
-     * Sets up listeners for task interactions (e.g., marking complete).
-     */
-    private fun initializeSchedule() {
-        // TODO: Implement setup for schedule view.
-        // - Load today's tasks and display them in a list or grid.
-        // - Set up listeners for tasks, like marking tasks as complete or editing them.
-    }
-
-    /**
-     * Adds a new task to the schedule.
-     * @param taskDetails Details about the task (title, due time, priority, etc.).
-     */
-    private fun addTask(taskDetails: Tasks) {
-        // TODO: Implement adding a task to the schedule.
-        // - Save task details to the database or backend.
-        // - Refresh the UI to display the new task.
-    }
-
-    /**
-     * Edits an existing task in the schedule.
-     * @param taskId The unique ID of the task to edit.
-     * @param updatedDetails The updated details for the task.
-     */
-    private fun editTask(taskId: String, updatedDetails: Tasks) {
-        // TODO: Implement task editing functionality.
-        // - Update the task in the database.
-        // - Reflect changes in the schedule view.
-    }
-
-    /**
-     * Deletes a task from the schedule.
-     * @param taskId The unique ID of the task to delete.
-     */
-    private fun deleteTask(taskId: String) {
-        // TODO: Implement task deletion.
-        // - Remove task from the database or backend.
-        // - Update the UI to reflect the deleted task.
-    }
-
-    /**
-     * Retrieves tasks for a selected date.
-     * @param date The selected date for which to load tasks.
-     */
-    private fun loadTasksForDate(date: String) {
-        // TODO: Implement loading of tasks for a specific date.
-        // - Query database for tasks on 'date'.
-        // - Update the schedule view to display these tasks.
-    }
-
-    /**
-     * Marks a task as complete or incomplete.
-     * @param taskId The unique ID of the task.
-     * @param isComplete Boolean indicating completion status.
-     */
-    private fun markTaskComplete(taskId: String, isComplete: Boolean) {
-        // TODO: Implement marking tasks as complete or incomplete.
-        // - Update task status in the database.
-        // - Refresh UI to indicate completion (e.g., strike-through, color change).
-    }
+}

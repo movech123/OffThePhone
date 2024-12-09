@@ -71,18 +71,8 @@
         app:layout_constraintBottom_toTopOf="@id/addToDoButton"
         android:layout_margin="16dp">
         <!-- Task items will populate here dynamically -->
-        <!-- To Do List Label -->
-        <TextView
-            android:id="@+id/toDoListLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="To Do List:"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-    </LinearLayout>
 
-    <!-- Add Task Button -->
+    </LinearLayout>
 
     <Button
         android:id="@+id/addToDoButton"

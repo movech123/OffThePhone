@@ -19,7 +19,9 @@ interface TaskDao {
     @Query("SELECT * FROM tasks")
     suspend fun getTasks(): List<Task>
 
-    @Query("DELETE FROM tasks")
-    suspend fun clearAllTasks()
+    @Query("UPDATE tasks SET isCompleted = :isCompleted WHERE id = :taskId")
+    suspend fun updateTaskCompletion(taskId: Int, isCompleted: Boolean)
 
+    @Query("SELECT * FROM tasks WHERE isCompleted = 0 ORDER BY id ASC")
+    suspend fun getIncompleteTasks(): List<Task>
 }

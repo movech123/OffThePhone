@@ -41,7 +41,4 @@ class Settings : AppCompatActivity() {
         return
     }
 
-    private fun savePreferences() {
-        // Save user preferences
-    }
 }

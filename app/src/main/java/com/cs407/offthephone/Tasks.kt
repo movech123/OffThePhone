@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 class Tasks : AppCompatActivity() {
     private lateinit var database : TaskDatabase
     private var taskList = arrayListOf<String>() // Store tasks locally
+    private var taskMap = mutableMapOf<String, Task>() // Map task names to Task objects
     private val viewModel: TasksViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +30,8 @@ class Tasks : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
         }
+
         database = TaskDatabase.getDatabase(this@Tasks)
         // Retrieve the task list from the intent
         val incomingTasks = intent.getStringArrayListExtra("TASK_LIST")
@@ -42,16 +43,23 @@ class Tasks : AppCompatActivity() {
         val taskContainer: LinearLayout = findViewById(R.id.toDoListContainer)
 
         viewModel.tasks.observe(this) { tasks ->
-            // Clear previous views
+            // Clear previous data
+            taskList.clear()
+            taskMap.clear()
             taskContainer.removeAllViews()
 
-            // Update the taskList and the view
-            taskList.clear()
-            taskList.addAll(tasks.map { it.name })
-            taskList.forEach { task ->
-                addTaskToView(taskContainer, task)
+            // Populate taskList with names and taskMap with Task objects
+            tasks.forEach { task ->
+                taskList.add(task.name) // Add task name to the list
+                taskMap[task.name] = task // Add Task object to the map
+            }
+
+            // Add tasks to the view
+            taskList.forEach { taskName ->
+                addTaskToView(taskContainer, taskName)
             }
         }
+
 
         // Add button navigation to TaskMaker
         val addButton: Button = findViewById(R.id.addToDoButton)
@@ -59,9 +67,6 @@ class Tasks : AppCompatActivity() {
             val intent = Intent(this, TaskMaker::class.java)
             startActivity(intent)
         }
-
-
-
 
         // Find the home button and set a click listener
         val homeButton: ImageView = findViewById(R.id.homeIcon)
@@ -81,29 +86,31 @@ class Tasks : AppCompatActivity() {
             }
         }
 
-
     }
-
-
-
 
     /**
      * Helper method to dynamically add tasks to the view
      */
-    private fun addTaskToView(container: LinearLayout, task: String) {
+    private fun addTaskToView(container: LinearLayout, taskName: String) {
+        val task = taskMap[taskName] ?: return // Get the Task object from the map
         val taskLayout = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
         }
 
         val taskTextView = TextView(this).apply {
-            text = task
+            text = taskName
             textSize = 18f
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         }
 
         val taskCheckbox = CheckBox(this).apply {
+            isChecked = task.isCompleted // Use the `completed` field from the Task object
+
             setOnCheckedChangeListener { _, isChecked ->
-                taskTextView.text = if (isChecked) "$task (Completed)" else task
+                lifecycleScope.launch {
+                    database.taskDao().updateTaskCompletion(task.id, isChecked) // Use the `id` field from the Task object
+                    taskTextView.text = if (isChecked) "$taskName (Completed)" else taskName
+                }
             }
         }
 
@@ -111,55 +118,4 @@ class Tasks : AppCompatActivity() {
         taskLayout.addView(taskCheckbox)
         container.addView(taskLayout)
     }
-
-    /**
-     * Sets up a listener or observer for task completion, allowing users to mark tasks as done.
-     */
-    private fun setupTaskCompletionListener() {
-        // TODO: Implement listener for marking tasks as complete.
-        // Example:
-        // Set a checkbox listener for each task to update its completion status.
-    }
-
-    /**
-     * Adds a new task to the user's list.
-     * @param taskName The name of the task to add.
-     */
-    private fun addTask(taskName: String) {
-        lifecycleScope.launch {
-            val newTask = Task(0, 9, 10, listOf("Monday", "Tuesday"), taskName, false)
-            database.taskDao().insertTask(newTask)
-        }
-    }
-
-    /**
-     * Deletes a task from the user's list.
-     * @param taskId The unique identifier of the task to delete.
-     */
-    private fun deleteTask(taskId: Int) {
-        // TODO: Implement task deletion logic.
-        // Example:
-        // TaskRepository.deleteTaskById(taskId)
-    }
-
-    /**
-     * Suggests tasks for users based on their schedule, prioritizing tasks by deadline or importance.
-     */
-    private fun suggestTasks() {
-        // TODO: Implement task suggestion logic based on user’s schedule.
-        // Example:
-        // val suggestedTasks = TaskSuggestionEngine.getSuggestedTasks()
-    }
-
-    /**
-     * Marks a task as complete and updates the database.
-     * @param taskId The unique identifier of the task to mark as complete.
-     */
-    private fun markTaskAsComplete(taskId: Int) {
-        // TODO: Implement the logic to mark a task as complete.
-        // Example:
-        // TaskRepository.markAsComplete(taskId)
-    }
-
-
 }

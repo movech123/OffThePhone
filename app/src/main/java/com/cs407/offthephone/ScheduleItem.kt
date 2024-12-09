@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 // ScheduleItem.kt - Data model for a schedule item
-data class ScheduleItem(val eventName: String)
+data class ScheduleItem(val eventName: String, val eventTime: String)
 
 class ScheduleAdapter(private val scheduleList: List<ScheduleItem>) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
 
@@ -24,7 +24,9 @@ class ScheduleAdapter(private val scheduleList: List<ScheduleItem>) : RecyclerVi
     override fun onBindViewHolder(holder: ScheduleViewHolder, position: Int) {
         val item = scheduleList[position]
         holder.eventName.text = item.eventName
+        holder.eventTime.text = item.eventTime
     }
+
 
     override fun getItemCount(): Int = scheduleList.size
 }
