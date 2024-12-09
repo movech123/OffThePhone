@@ -73,6 +73,18 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp" />
 
+    <EditText
+        android:id="@+id/enterTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter Time"
+        android:inputType="number"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enterTask"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp" />
 
     <!-- Submit Button -->
     <Button
@@ -83,6 +95,6 @@
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/enterTask" />
+        app:layout_constraintTop_toBottomOf="@id/enterTime" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

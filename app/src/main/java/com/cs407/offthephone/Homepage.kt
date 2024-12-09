@@ -46,18 +46,19 @@ class Homepage : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
-            // Fetch tasks from the database
-            val tasks = database.taskDao().getTasks()
+            // Fetch incomplete tasks from the database
+            val tasks = database.taskDao().getIncompleteTasks()
 
             // Get the top 3 tasks
             val topTasks = tasks.take(3).map { task ->
-                ScheduleItem(task.name) // You can customize the time string
+                ScheduleItem(task.name, task.time)
             }
 
             // Update the RecyclerView adapter
             recyclerView.adapter = ScheduleAdapter(topTasks)
         }
     }
+
 
     private fun setupButtons() {
         // Find the tasks button and set a click listener
