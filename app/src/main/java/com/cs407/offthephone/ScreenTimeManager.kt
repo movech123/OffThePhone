@@ -11,11 +11,7 @@ import android.util.Log
 
 class ScreenTimeManager(private val context: Context) {
 
-    /**
-     * Fetches the top N most-used apps with their screen time.
-     * @param topN Number of top apps to fetch (default: 3).
-     * @return A list of pairs (App Name, Screen Time in milliseconds).
-     */
+
     fun getTopUsedApps(topN: Int = 3): List<Pair<String, Long>> {
         if (!isUsageStatsPermissionGranted()) {
             Log.e("ScreenTimeManager", "Usage stats permission not granted.")
@@ -24,7 +20,7 @@ class ScreenTimeManager(private val context: Context) {
 
         val usageStatsManager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
 
-        // Query usage stats for the last 24 hours
+        // get usage stats for the last 24 hours
         val endTime = System.currentTimeMillis()
         val startTime = endTime - 24 * 60 * 60 * 1000 // 24 hours ago
 
@@ -37,12 +33,12 @@ class ScreenTimeManager(private val context: Context) {
             return emptyList()
         }
 
-        // Map package names to screen time and sort by usage time
+        // map package names to screen time and sort by usage time
         val appUsageMap = usageStatsList
-            .filter { it.totalTimeInForeground > 0 } // Only include apps with usage
+            .filter { it.totalTimeInForeground > 0 }
             .associateBy({ it.packageName }, { it.totalTimeInForeground })
 
-        // Get top N apps and resolve package names to app names
+        // get top N apps and resolve package names to app names
         return appUsageMap.entries
             .sortedByDescending { it.value }
             .take(topN)
@@ -51,10 +47,6 @@ class ScreenTimeManager(private val context: Context) {
             }
     }
 
-    /**
-     * Checks if usage stats permission is granted.
-     * @return True if granted, false otherwise.
-     */
     fun isUsageStatsPermissionGranted(): Boolean {
         val usageStatsManager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
         val endTime = System.currentTimeMillis()
@@ -65,19 +57,11 @@ class ScreenTimeManager(private val context: Context) {
         return stats.isNotEmpty()
     }
 
-    /**
-     * Redirects the user to grant usage stats permission.
-     */
     fun requestUsageStatsPermission() {
         val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
         context.startActivity(intent)
     }
 
-    /**
-     * Resolves a package name to a user-friendly app name.
-     * @param packageName The package name of the app.
-     * @return The user-friendly app name, or the package name if the app name cannot be resolved.
-     */
     private fun getAppNameFromPackage(packageName: String): String {
         return try {
             val packageManager: PackageManager = context.packageManager
@@ -89,11 +73,6 @@ class ScreenTimeManager(private val context: Context) {
         }
     }
 
-    /**
-     * Sends the top N used apps' information via a callback.
-     * @param topN Number of top apps to fetch (default: 3).
-     * @param callback Function to send the data to.
-     */
     fun sendTopUsedApps(topN: Int = 3, callback: (List<Pair<String, Long>>) -> Unit) {
         val topApps = getTopUsedApps(topN)
         callback(topApps)
