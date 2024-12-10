@@ -29,7 +29,6 @@ class Homepage : AppCompatActivity() {
         setDate() // make sure the right date is displayed
         setupSchedule() // populate the schedule box with the user's current schedule
         setupButtons() // initialize buttons
-        println(1)
         setupScreenTimeManager() // make sure we can access the user's screentime
         setScreentimeGraph() // make sure the graph is showing the right data
 
