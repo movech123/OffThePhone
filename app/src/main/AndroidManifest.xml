@@ -41,9 +41,6 @@
         <activity
             android:name=".Homepage"
             android:exported="false" />
-        <activity
-            android:name=".Setup"
-            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
