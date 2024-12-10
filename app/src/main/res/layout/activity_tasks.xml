@@ -70,9 +70,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/addToDoButton"
         android:layout_margin="16dp">
-        <!-- Task items will populate here dynamically -->
-
+        <!-- Dynamic task layout will be added programmatically -->
     </LinearLayout>
+
 
     <Button
         android:id="@+id/addToDoButton"

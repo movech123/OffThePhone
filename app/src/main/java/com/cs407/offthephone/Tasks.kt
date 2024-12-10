@@ -60,7 +60,6 @@ class Tasks : AppCompatActivity() {
             }
         }
 
-
         // Add button navigation to TaskMaker
         val addButton: Button = findViewById(R.id.addToDoButton)
         addButton.setOnClickListener {
@@ -93,6 +92,7 @@ class Tasks : AppCompatActivity() {
      */
     private fun addTaskToView(container: LinearLayout, taskName: String) {
         val task = taskMap[taskName] ?: return // Get the Task object from the map
+
         val taskLayout = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
         }
@@ -103,6 +103,22 @@ class Tasks : AppCompatActivity() {
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         }
 
+        val deleteButton = Button(this).apply {
+            text = getString(R.string.deleted_task) // Define "delete" text in strings.xml
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            visibility = Button.GONE // Initially hidden
+
+            setOnClickListener {
+                lifecycleScope.launch {
+                    database.taskDao().deleteTask(task.id)
+                    container.removeView(taskLayout)
+                }
+            }
+        }
+
         val taskCheckbox = CheckBox(this).apply {
             isChecked = task.isCompleted // Use the `completed` field from the Task object
 
@@ -110,12 +126,15 @@ class Tasks : AppCompatActivity() {
                 lifecycleScope.launch {
                     database.taskDao().updateTaskCompletion(task.id, isChecked) // Use the `id` field from the Task object
                     taskTextView.text = if (isChecked) "$taskName (Completed)" else taskName
+                    deleteButton.visibility = if (isChecked) ImageButton.VISIBLE else ImageButton.GONE // Update trashButton visibility
                 }
             }
         }
 
         taskLayout.addView(taskTextView)
         taskLayout.addView(taskCheckbox)
+        taskLayout.addView(deleteButton)
+
         container.addView(taskLayout)
     }
 }
