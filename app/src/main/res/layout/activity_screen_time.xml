@@ -75,6 +75,8 @@
         tools:layout_editor_absoluteX="70dp">
 
         <LinearLayout
+
+            android:id="@+id/screentime1"
             android:layout_width="300dp"
             android:layout_height="257dp"
             android:layout_gravity="center|center_horizontal|center_vertical"
@@ -85,6 +87,7 @@
             android:outlineAmbientShadowColor="#EDE7E7">
 
             <View
+                android:id="@+id/screentime2"
                 android:layout_width="0dp"
                 android:layout_height="225dp"
                 android:layout_margin="4dp"
@@ -92,6 +95,7 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime3"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_margin="4dp"
@@ -99,6 +103,7 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime4"
                 android:layout_width="0dp"
                 android:layout_height="75dp"
                 android:layout_margin="4dp"
@@ -106,6 +111,7 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime5"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_margin="4dp"
@@ -113,11 +119,66 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime6"
                 android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:background="#D2B48C" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/bartext1"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@+id/screentime1"
+                android:text=""
+                android:textAlignment="center"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/bartext2"
+                android:layout_marginStart="@+id/screentime2"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView
+                android:id="@+id/bartext3"
+                android:layout_width="60dp"
+                android:layout_marginStart="@+id/screentime3"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView
+                android:id="@+id/bartext4"
+                android:layout_marginStart="@+id/screentime4"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView
+                android:id="@+id/bartext5"
+                android:layout_marginStart="@+id/screentime5"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -132,7 +193,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="338dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -140,7 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/alice"
                 android:text="@string/home_screentime"
                 android:textColor="#594747"
@@ -153,12 +214,12 @@
 
             <TextView
                 android:id="@+id/app_screentime1"
-                android:layout_width="93dp"
+                android:layout_width="208dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Tiktok:"
+                android:text=""
                 android:textColor="#735959" />
 
             <SeekBar
@@ -174,13 +235,34 @@
 
             <TextView
                 android:id="@+id/app_screentime2"
-                android:layout_width="86dp"
+                android:layout_width="209dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Instagram:"
+                android:text=""
+
                 android:textColor="#594242" />
+
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="-40dp"
+                android:layout_marginBottom="20dp"
+                android:progressTint="#E22929"
+                android:thumbTint="#544343" />
+
+            <TextView
+                android:id="@+id/app_screentime3"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/alice"
+                android:text=""
+                android:textColor="#574848" />
 
             <SeekBar
                 android:id="@+id/seekBar3"
@@ -189,18 +271,20 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="-40dp"
                 android:layout_marginBottom="20dp"
-                android:progressTint="#C82424"
-                android:thumbTint="#544343" />
+                android:outlineSpotShadowColor="#1B1414"
+                android:progressTint="#E22929"
+                android:thumbTint="#524545" />
 
             <TextView
-                android:id="@+id/app_screentime3"
-                android:layout_width="89dp"
+                android:id="@+id/app_screentime4"
+                android:layout_width="209dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Settings:"
-                android:textColor="#574848" />
+                android:text=""
+
+                android:textColor="#5B4D4D" />
 
             <SeekBar
                 android:id="@+id/seekBar4"
@@ -209,18 +293,18 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="-40dp"
                 android:layout_marginBottom="20dp"
-                android:outlineSpotShadowColor="#1B1414"
-                android:progressTint="#B62626"
-                android:thumbTint="#524545" />
+                android:progressTint="#E22929"
+                android:thumbTint="#433535" />
 
             <TextView
-                android:id="@+id/app_screentime4"
-                android:layout_width="wrap_content"
+                android:id="@+id/app_screentime5"
+                android:layout_width="206dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Messages:"
+                android:text=""
+
                 android:textColor="#5B4D4D" />
 
             <SeekBar
@@ -230,11 +314,10 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="-40dp"
                 android:layout_marginBottom="20dp"
-                android:progressTint="#D74545"
+                android:progressTint="#E22929"
                 android:thumbTint="#433535" />
 
         </LinearLayout>
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
