@@ -85,18 +85,6 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp" />
 
-    <EditText
-        android:id="@+id/enterDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter Date: mm/dd/year"
-        android:padding="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/enterTime"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp" />
-
     <!-- Submit Button -->
     <Button
         android:id="@+id/submitButton"
@@ -106,6 +94,6 @@
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/enterDate" />
+        app:layout_constraintTop_toBottomOf="@id/enterTime" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

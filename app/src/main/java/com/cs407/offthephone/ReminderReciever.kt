@@ -1,4 +1,5 @@
 package com.cs407.offthephone
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -8,17 +9,17 @@ import androidx.core.app.NotificationManagerCompat
 
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        val notificationId = 1
-        val channelId = "reminder_channel"
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+        val channelId = "reminder_channel"
         val notification = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentTitle("Reminder")
-            .setContentText("It's time for your task!")
+            .setSmallIcon(R.drawable.logo)
+            .setContentTitle("Task Reminder")
+            .setContentText("You have a task to complete!")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(true)
             .build()
 
-        NotificationManagerCompat.from(context).notify(notificationId, notification)
+        notificationManager.notify(1, notification)
     }
 }

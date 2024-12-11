@@ -10,5 +10,4 @@ data class Task(
     val time: String,
     val name : String,
     val isCompleted: Boolean = false,
-    val date : String
     )
