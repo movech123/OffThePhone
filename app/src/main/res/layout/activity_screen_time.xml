@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/screentime_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDFAEA"
@@ -85,6 +84,7 @@
             android:outlineAmbientShadowColor="#EDE7E7">
 
             <View
+                android:id="@+id/screentime1"
                 android:layout_width="0dp"
                 android:layout_height="225dp"
                 android:layout_margin="4dp"
@@ -92,6 +92,7 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime2"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_margin="4dp"
@@ -99,6 +100,7 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime3"
                 android:layout_width="0dp"
                 android:layout_height="75dp"
                 android:layout_margin="4dp"
@@ -106,6 +108,7 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime4"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_margin="4dp"
@@ -113,11 +116,71 @@
                 android:background="#D2B48C" />
 
             <View
+                android:id="@+id/screentime5"
                 android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:background="#D2B48C" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/bartext1"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:textAlignment="center"
+                android:enabled="false"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/bartext2"
+                android:layout_marginStart="0.5dp"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:enabled="false"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView
+                android:id="@+id/bartext3"
+                android:layout_width="60dp"
+                android:layout_marginStart="0.5dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:enabled="false"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView
+                android:id="@+id/bartext4"
+                android:layout_marginStart="0.5dp"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:enabled="false"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+            <TextView
+                android:id="@+id/bartext5"
+                android:layout_marginStart="0.5dp"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:textAlignment="center"
+                android:enabled="false"
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="11sp" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -132,7 +195,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="338dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -140,7 +203,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="60dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/alice"
                 android:text="@string/home_screentime"
                 android:textColor="#594747"
@@ -153,12 +216,12 @@
 
             <TextView
                 android:id="@+id/app_screentime1"
-                android:layout_width="93dp"
+                android:layout_width="201dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Tiktok:"
+                android:text=""
                 android:textColor="#735959" />
 
             <SeekBar
@@ -174,16 +237,16 @@
 
             <TextView
                 android:id="@+id/app_screentime2"
-                android:layout_width="86dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Instagram:"
+                android:text=""
                 android:textColor="#594242" />
 
             <SeekBar
-                android:id="@+id/seekBar3"
+                android:id="@+id/seekBar2"
                 android:layout_width="239dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
@@ -194,16 +257,16 @@
 
             <TextView
                 android:id="@+id/app_screentime3"
-                android:layout_width="89dp"
+                android:layout_width="201dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Settings:"
+                android:text=""
                 android:textColor="#574848" />
 
             <SeekBar
-                android:id="@+id/seekBar4"
+                android:id="@+id/seekBar3"
                 android:layout_width="239dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
@@ -215,12 +278,32 @@
 
             <TextView
                 android:id="@+id/app_screentime4"
-                android:layout_width="wrap_content"
+                android:layout_width="205dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="40dp"
                 android:fontFamily="@font/alice"
-                android:text="Messages:"
+                android:text=""
+                android:textColor="#5B4D4D" />
+
+            <SeekBar
+                android:id="@+id/seekBar4"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="-40dp"
+                android:layout_marginBottom="20dp"
+                android:progressTint="#D74545"
+                android:thumbTint="#433535" />
+
+            <TextView
+                android:id="@+id/app_screentime5"
+                android:layout_width="202dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/alice"
+                android:text=""
                 android:textColor="#5B4D4D" />
 
             <SeekBar
