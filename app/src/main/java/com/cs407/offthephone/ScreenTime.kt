@@ -1,14 +1,17 @@
 package com.cs407.offthephone
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 
 class ScreenTime : AppCompatActivity() {
@@ -129,6 +132,10 @@ class ScreenTime : AppCompatActivity() {
                         findViewById<TextView>(R.id.app_screentime4),
                         findViewById<TextView>(R.id.app_screentime5)
                     )
+                    // Get the user-inputted desired time from an EditText
+                    val desiredTimeInput = findViewById<EditText>(R.id.desiredTime)
+
+
                     sortedApps.forEachIndexed { index, (appName, screenTime) ->
                         if (index < seekBars.size && index < appNames.size) {
                             val progress = ((screenTime.toFloat() / maxTime) * 100).toInt()
@@ -136,11 +143,22 @@ class ScreenTime : AppCompatActivity() {
                             // Convert time to hours and minutes
                             val hours = screenTime / (1000 * 60 * 60)
                             val minutes = (screenTime % (1000 * 60 * 60)) / (1000 * 60)
+                            val actualTimeInMinutes = (hours * 60 + minutes).toInt()
                             val timeString = when {
                                 hours > 0 -> "${hours}h ${minutes}m"
                                 else -> "${minutes}m"
                             }
                             appNames[index].text = "$appName: ${hours}h ${minutes}m"
+                            // Compare with desired time and update tint
+                            val desiredTimeText = desiredTimeInput.text.toString()
+                            val desiredTimeInMinutes = desiredTimeText.toIntOrNull() ?: 0
+                            if (actualTimeInMinutes > desiredTimeInMinutes) {
+                                seekBars[index].progressTintList = ColorStateList.valueOf(Color.RED)
+                            } else {
+                                seekBars[index].progressTintList = ColorStateList.valueOf(Color.GREEN)
+                            }
+
+
                         }
                     }
                 }
