@@ -39,7 +39,7 @@ class TaskMaker : AppCompatActivity() {
         createNotificationChannel(this)
 
         // Schedule notification for 9:00 AM
-        scheduleNotification(this, 5, 49)
+        scheduleNotification(this, 18, 10)
         // Find the home button and set a click listener
         val homeButton: ImageView = findViewById(R.id.homeIcon)
         homeButton.setOnClickListener {
