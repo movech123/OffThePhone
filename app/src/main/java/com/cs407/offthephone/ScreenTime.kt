@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
@@ -132,14 +131,17 @@ class ScreenTime : AppCompatActivity() {
                         findViewById<TextView>(R.id.app_screentime4),
                         findViewById<TextView>(R.id.app_screentime5)
                     )
-                    // Get the user-inputted desired time from an EditText
-                    val desiredTimeInput = findViewById<EditText>(R.id.desiredTime)
+
 
 
                     sortedApps.forEachIndexed { index, (appName, screenTime) ->
                         if (index < seekBars.size && index < appNames.size) {
                             val progress = ((screenTime.toFloat() / maxTime) * 100).toInt()
                             seekBars[index].progress = progress
+
+                            seekBars[index].isFocusable = false
+                            seekBars[index].isClickable = false
+
                             // Convert time to hours and minutes
                             val hours = screenTime / (1000 * 60 * 60)
                             val minutes = (screenTime % (1000 * 60 * 60)) / (1000 * 60)
@@ -150,11 +152,10 @@ class ScreenTime : AppCompatActivity() {
                             }
                             appNames[index].text = "$appName: ${hours}h ${minutes}m"
                             // Compare with desired time and update tint
-                            val desiredTimeText = desiredTimeInput.text.toString()
-                            val desiredTimeInMinutes = desiredTimeText.toIntOrNull() ?: 0
-                            if (actualTimeInMinutes > desiredTimeInMinutes) {
+                            // Update SeekBar tint
+                            if (hours >= 2) { // Red if 2 hours or more
                                 seekBars[index].progressTintList = ColorStateList.valueOf(Color.RED)
-                            } else {
+                            } else { // Green if under 2 hours
                                 seekBars[index].progressTintList = ColorStateList.valueOf(Color.GREEN)
                             }
 
